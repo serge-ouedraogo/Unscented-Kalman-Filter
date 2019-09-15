@@ -41,6 +41,15 @@ class UKF {
    */
   void UpdateRadar(MeasurementPackage meas_package);
 
+  Eigen::MatrixXd GenerateSigmaPoints(int n, Eigen::MatrixXd P, Eigen::VectorXd X);
+
+  Eigen::MatrixXd PredictSigmaPoints(int n, int naug, double delta_t, Eigen::MatrixXd Xaug);
+
+  // Radar measurement noise covariance matrix.
+  Eigen::MatrixXd R_radar;
+
+  // Lidar measurement noise covariance matrix.
+  Eigen::MatrixXd R_laser;
 
   // initially set to false, set to true in first call of ProcessMeasurement
   bool is_initialized_;
